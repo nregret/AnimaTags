@@ -146,6 +146,11 @@ function debounce(fn, ms){
   return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
 }
 
+function esc(s){
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 // 合并后的全量服饰与物理背景细分特征中英文映射表
 const TRAITS_TRANSLATION = {
   // --- 服饰特征 (Clothing) ---
